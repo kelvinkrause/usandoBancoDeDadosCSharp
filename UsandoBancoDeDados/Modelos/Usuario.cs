@@ -12,8 +12,11 @@ internal class Usuario
     public string Nome { get; set; }
     private string _cpf;
     public string Cpf 
-    { 
-        get => $"{_cpf.Substring(0,3)}.{_cpf.Substring(3, 3)}.{_cpf.Substring(6, 3)}-{_cpf.Substring(9, 2)}"; 
+    {
+        get
+        {
+            return _cpf;
+        }
         set
         {
             if(value.Length > 11)
@@ -35,7 +38,7 @@ internal class Usuario
         return $@"
         Id: {Id}
         Nome: {Nome}
-        CPF: {Cpf}
+        CPF: {_cpf.Substring(0, 3)}.{_cpf.Substring(3, 3)}.{_cpf.Substring(6, 3)}-{_cpf.Substring(9, 2)}
         Foto Perfil: {FotoPerfil}
         Ativo: {Ativo}";
     }

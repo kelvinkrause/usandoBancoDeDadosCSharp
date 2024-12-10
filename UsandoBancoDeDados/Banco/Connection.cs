@@ -1,6 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +47,35 @@ internal class Connection
         return lista;
     }
 
+    public Usuario getUsuarioById(int idUsuario)
+    {
+        using var connection = ObterConexao();
+        connection.Open();
+
+        string sql = "SELECT * FROM USUARIOS WHERE Id = @id";
+
+        SqlCommand command = new SqlCommand(sql, connection);
+
+        command.Parameters.AddWithValue("@id", idUsuario);
+
+        using SqlDataReader dataReader = command.ExecuteReader();
+
+        while (dataReader.Read())
+        {
+            int id = Convert.ToInt32(dataReader["Id"]);
+            string nome = Convert.ToString(dataReader["Nome"]);
+            string cpf = Convert.ToString(dataReader["Cpf"]);
+            string fotoPerfil = Convert.ToString(dataReader["FotoPerfil"]);
+            bool ativo = Convert.ToBoolean(dataReader["Ativo"]);
+
+            return new Usuario() { Id = id, Nome = nome, Cpf = cpf, FotoPerfil = fotoPerfil, Ativo = ativo };
+        }
+
+
+        return null;
+
+    }
+
     public void Adicionar(Usuario usuario)
     {
         using var connection = ObterConexao();
@@ -63,6 +94,24 @@ internal class Connection
         if(retorno > 1) 
                 Console.WriteLine($"Linhas afetadas: {retorno}");
 
+    }
+
+    public void Atualiar(Usuario usuario)
+    {
+        using var connection = ObterConexao();
+        connection.Open();
+
+        string sql = "UPDATE USUARIOS SET Nome = @nome, Cpf = @cpf, FotoPerfil = @fotoPerfil";
+
+        SqlCommand command = new SqlCommand(sql, connection);
+
+        command.Parameters.AddWithValue("@nome", usuario.Nome);
+        command.Parameters.AddWithValue("@cpf", usuario.Cpf);
+        command.Parameters.AddWithValue("fotoPerfil", usuario.FotoPerfil);
+
+        int retorno = command.ExecuteNonQuery();
+        if (retorno > 1)
+            Console.WriteLine($"Linhas afetadas: {retorno}");
     }
 
 

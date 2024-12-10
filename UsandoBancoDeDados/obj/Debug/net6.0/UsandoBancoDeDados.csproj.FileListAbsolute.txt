@@ -123,3 +123,13 @@ C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\obj\Debu
 C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\obj\Debug\net6.0\UsandoBancoDeDados.pdb
 C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\obj\Debug\net6.0\UsandoBancoDeDados.genruntimeconfig.cache
 C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\obj\Debug\net6.0\ref\UsandoBancoDeDados.dll
+C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\cimol\source\repos\usandoBancoDeDadosCSharp\UsandoBancoDeDados\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll

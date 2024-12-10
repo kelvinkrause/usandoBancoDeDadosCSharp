@@ -5,6 +5,7 @@ internal class Program
 {
     public static void Main(string[] args)
     {
+
         //ADO NET
         try
         {
@@ -12,12 +13,10 @@ internal class Program
             //connection.Open();
             //Console.WriteLine(connection.State); //Retorna o estado da conexão.
 
-            Listar(new Connection().Listar().ToList());
-            AdicionarUsuario();
-            Listar(new Connection().Listar().ToList());
+            //Menu();
 
-            //Usuario kelvin = new Usuario() { Nome = "Kelvin", Cpf = "99988899942"};
-            //Console.WriteLine(kelvin);
+            Usuario usuario = new Connection().getUsuarioById(1);
+            Console.WriteLine(usuario);
 
         }
         catch (Exception ex)
@@ -26,8 +25,44 @@ internal class Program
         }
     }
 
-    public static void Listar(List<Usuario> lista)
+    public static void Menu()
     {
+        Console.WriteLine("Digite 1 para listar todos usuários");
+        Console.WriteLine("Digite 2 para adicionar um usuário");
+        Console.WriteLine("Digite 3 para atualizar um usuário");
+        Console.WriteLine("Digite 4 para deletar um usuário");
+        Console.WriteLine("Digite 0 para sair");
+
+        Console.Write("\nDigite uma opção: ");
+        int opcao = int.Parse(Console.ReadLine()!);
+
+        switch (opcao)
+        {
+            case 0:
+                Console.WriteLine("Saindo");
+                break;
+            case 1:
+                ListarUsuarios();
+                break;
+            case 2:
+                AdicionarUsuario(); 
+                break;
+            case 3:
+                AtualizarUsuario();
+                break;
+            case 4:
+                DeletarUsuario();
+                break;
+            default:
+                Console.WriteLine("Opção inválido.");
+                break;
+        }
+
+    }
+
+    public static void ListarUsuarios()
+    {
+        List<Usuario> lista = new Connection().Listar().ToList();
         lista.ForEach(x => Console.WriteLine(x));
     }
 
@@ -43,6 +78,15 @@ internal class Program
         Usuario usuario = new Usuario() { Nome = nome, Cpf = cpf, FotoPerfil = fotoPerfil};
 
         new Connection().Adicionar(usuario);
+    }
+
+    public static void AtualizarUsuario()
+    {
+
+    }
+    public static void DeletarUsuario()
+    {
+
     }
 
 }
