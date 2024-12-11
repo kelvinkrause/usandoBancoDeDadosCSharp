@@ -71,7 +71,6 @@ internal class Connection
             return new Usuario() { Id = id, Nome = nome, Cpf = cpf, FotoPerfil = fotoPerfil, Ativo = ativo };
         }
 
-
         return null;
 
     }
@@ -96,15 +95,16 @@ internal class Connection
 
     }
 
-    public void Atualiar(Usuario usuario)
+    public void Atualizar(Usuario usuario)
     {
         using var connection = ObterConexao();
         connection.Open();
 
-        string sql = "UPDATE USUARIOS SET Nome = @nome, Cpf = @cpf, FotoPerfil = @fotoPerfil";
+        string sql = "UPDATE USUARIOS SET Nome = @nome, Cpf = @cpf, FotoPerfil = @fotoPerfil WHERE Id = @id";
 
         SqlCommand command = new SqlCommand(sql, connection);
 
+        command.Parameters.AddWithValue("@id", usuario.Id);
         command.Parameters.AddWithValue("@nome", usuario.Nome);
         command.Parameters.AddWithValue("@cpf", usuario.Cpf);
         command.Parameters.AddWithValue("fotoPerfil", usuario.FotoPerfil);

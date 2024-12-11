@@ -13,10 +13,8 @@ internal class Program
             //connection.Open();
             //Console.WriteLine(connection.State); //Retorna o estado da conexão.
 
-            //Menu();
+            Menu();
 
-            Usuario usuario = new Connection().getUsuarioById(1);
-            Console.WriteLine(usuario);
 
         }
         catch (Exception ex)
@@ -82,8 +80,66 @@ internal class Program
 
     public static void AtualizarUsuario()
     {
+        ListarUsuarios();
+        Console.Write("\nDigite o ID do usuário que deseja atualizar: ");
+        int id = int.Parse(Console.ReadLine());
+
+        Usuario usuario = new Connection().getUsuarioById(id);
+
+        if (usuario != null)
+        {
+            int opcao = -1;
+
+            Console.WriteLine(usuario);
+
+            while(opcao != 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Digite 1 para alterar o Nome");
+                Console.WriteLine("Digite 2 para alterar o CPF");
+                Console.WriteLine("Digite 3 para alterar a Foto de Perfil");
+                Console.WriteLine("Digite 0 para sair e salvar");
+
+                Console.Write("\nDigite uma opção: ");
+                opcao = int.Parse(Console.ReadLine());
+
+                switch (opcao)
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        Console.Write("\nDigite o nome do usuário: ");
+                        usuario.Nome = Console.ReadLine();
+                        break;
+                    case 2:
+                        Console.Write("\nDigite o CPF do usuário: ");
+                        usuario.Cpf = Console.ReadLine();
+                        break;
+                    case 3:
+                        Console.Write("\nDigite o endereço da foto de perfil: ");
+                        usuario.FotoPerfil = Console.ReadLine();
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida.");
+                        break;
+                }
+            } 
+            
+            new Connection().Atualizar(usuario);
+
+        }
+        else
+        {
+            Console.WriteLine("Usuário informado não existe.");
+        }
 
     }
+
+    public void alteracao()
+    {
+
+    }
+
     public static void DeletarUsuario()
     {
 
