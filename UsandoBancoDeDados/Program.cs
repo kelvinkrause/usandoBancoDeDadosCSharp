@@ -1,4 +1,5 @@
-﻿using UsandoBancoDeDados.Banco;
+﻿using System.Threading.Channels;
+using UsandoBancoDeDados.Banco;
 using UsandoBancoDeDados.Modelos;
 
 internal class Program
@@ -53,6 +54,7 @@ internal class Program
                 break;
             default:
                 Console.WriteLine("Opção inválido.");
+                RetornaAoMenu();
                 break;
         }
 
@@ -62,6 +64,8 @@ internal class Program
     {
         List<Usuario> lista = new Connection().Listar().ToList();
         lista.ForEach(x => Console.WriteLine(x));
+
+        RetornaAoMenu();
     }
 
     public static void AdicionarUsuario()
@@ -76,6 +80,8 @@ internal class Program
         Usuario usuario = new Usuario() { Nome = nome, Cpf = cpf, FotoPerfil = fotoPerfil};
 
         new Connection().Adicionar(usuario);
+
+        RetornaAoMenu();
     }
 
     public static void AtualizarUsuario()
@@ -133,16 +139,49 @@ internal class Program
             Console.WriteLine("Usuário informado não existe.");
         }
 
-    }
-
-    public void alteracao()
-    {
+        RetornaAoMenu();
 
     }
 
     public static void DeletarUsuario()
     {
+        ListarUsuarios();
 
+        Console.Write("\nDigite o ID do usuário que deseja atualizar: ");
+        var idString = Console.ReadLine()[0];
+
+        bool existe = int.TryParse(idString.ToString(), out int id);
+
+        if(!existe)
+        {
+            Console.WriteLine("Valor informado não corresponde a um Id.");
+            RetornaAoMenu();
+        }
+
+
+        Usuario usuario = new Connection().getUsuarioById(id);
+
+        if (usuario != null)
+        {
+            new Connection().Deletar(usuario);
+        }
+        else
+        {
+            Console.WriteLine("Id informado não existe.");
+        }        
+        
+        RetornaAoMenu();
+
+    }
+
+    public static void RetornaAoMenu()
+    {
+        Console.WriteLine();
+        Console.Write("Tecla alguma tecla para retornar ao menu. ");
+        Console.ReadKey(true);
+        Thread.Sleep(800);
+        Console.Clear();
+        Menu();
     }
 
 }

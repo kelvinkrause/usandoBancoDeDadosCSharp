@@ -52,7 +52,7 @@ internal class Connection
         using var connection = ObterConexao();
         connection.Open();
 
-        string sql = "SELECT * FROM USUARIOS WHERE Id = @id";
+        string sql = "SELECT * FROM USUARIOS WHERE Id = @id AND Ativo = 1";
 
         SqlCommand command = new SqlCommand(sql, connection);
 
@@ -112,6 +112,23 @@ internal class Connection
         int retorno = command.ExecuteNonQuery();
         if (retorno > 1)
             Console.WriteLine($"Linhas afetadas: {retorno}");
+    }
+
+    public void Deletar(Usuario usuario)
+    {
+        using var connection = ObterConexao();
+        connection.Open();
+
+        string sql = "UPDATE USUARIOS SET Ativo = 0 WHERE Id = @id";
+
+        SqlCommand command = new SqlCommand(sql, connection);
+
+        command.Parameters.AddWithValue("@id", usuario.Id);
+
+        int retorno = command.ExecuteNonQuery();
+        if (retorno > 1)
+            Console.WriteLine($"Linhas afetadas: {retorno}");
+
     }
 
 
